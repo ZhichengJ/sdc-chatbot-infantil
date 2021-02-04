@@ -1,0 +1,134 @@
+nlu:
+- intent: saludar
+  examples: |
+    - Hi
+    - hola
+    - holi
+    - hey
+    - hi
+    - qué hay
+    - qué pasa
+    - buenas
+    - buenos días
+    - buenas tardes
+    - buenas noches
+    - saludos
+
+- intent: despedirse
+  examples: |
+    - adiós
+    - bye
+    - chao
+    - hasta luego
+    - hasta la vista
+    - hasta pronto
+    - me voy
+    - nos vemos
+
+- intent: negar
+  examples: |
+    - en absoluto
+    - nada
+    - negativo
+    - negación
+    - nanai
+    - no
+    - no quiero
+    - nop
+
+- intent: afirmar
+  examples: |
+    - afirmativo
+    - claro
+    - chachi
+    - defintivamente
+    - guay
+    - por supuesto
+    - seguro
+    - sep
+    - sip
+    - si
+    - sí
+    - yep
+    - yes
+    - vale
+    - siguiente
+
+- intent: clasificar
+  examples: |
+    - quiero jugar
+    - jugar
+    - me gustaria jugar
+    - quiero clasificar
+    - clasificar
+    - me gustaria clasificar
+
+- intent: tutorial
+  examples: |
+    - explica
+    - explicame
+    - explica el juego
+    - explicame el juego
+    - quiero que me expliques
+    - quiero una explicacion
+    - de que va el juego
+    - como se juega
+
+- intent: corto
+  examples: |
+    - el sonido es corto
+    - es corto
+    - es un sonido corto
+    - corto
+
+- intent: mediano
+  examples: |
+    - el sonido es mediano
+    - es mediano
+    - es normal
+    - es regular
+    - es un sonido mediano
+    - mediano
+    - medio
+    - normal
+    - regular
+
+- intent: largo
+  examples: |
+    - el sonido es largo
+    - es largo
+    - es un sonido largo
+    - largo
+
+- intent: preguntar_proyecto
+  examples: |
+    - ¿qué es un sonidos del cielo?
+    - ¿para qué sirve sonidos del cielo?
+    - ¿qué hace sonidos del cielo?
+    - ¿qué significa sonidos del cielo?
+    - no sé que es sonidos del cielo
+    - que es sonidos del cielo
+    - de qué va sonidos del cielo
+    - para que sirve sonidos del cielo
+    - información sobre sonidos del cielo
+    - información del proyecto
+    - información sobre el proyecto
+    - informacion de sonidos del cielo
+
+- intent: preguntar_aclarar
+  examples: |
+    - ¿qué hay que hacer?
+    - ¿qué hay que hacer ahora?
+    - ¿qué tengo que hacer ahora?
+    - no sé que hay que hacer
+    - no me he enterado
+    - qué tengo que hacer
+    - que ahoga ahora
+
+- intent: preguntar_meteoro
+  examples: |
+    - ¿qué es un meteoro?
+    - ¿qué es un meteoroide?
+    - no sé qué es un meteoro
+    - no sé qué es un meteoroide
+

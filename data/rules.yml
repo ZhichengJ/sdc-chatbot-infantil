@@ -1,0 +1,5 @@
+rules:
+- rule: Pedir que repita la ultima frase
+  steps:
+  - intent: nlu_fallback
+  - action: utter_reformular

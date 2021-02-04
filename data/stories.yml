@@ -1,0 +1,132 @@
+stories:
+ - story: saludo
+   steps:
+   - intent: saludar
+   - action: utter_hola
+   - action: utter_menu
+   
+ - story: explicacion
+   steps:
+   - intent: tutorial
+   - action: utter_tutorial
+
+ - story: clasificacion
+   steps:
+   - intent: clasificar
+   - action: utter_clasificar
+   - action: utter_clasificar_instrucciones
+   - action: action_get_sample
+   - action: utter_pregunta1
+   - checkpoint: check_pregunta1
+
+ - story: respuesta1 corto
+   steps:
+   - checkpoint: check_pregunta1
+   - intent: corto
+   - action: action_set_r1_corto
+   - slot_was_set:
+     - duracion: "corto"
+   - action: utter_feedback_respuesta1
+   - action: utter_pregunta2
+   - checkpoint: check_pregunta2
+
+ - story: respuesta1 mediano
+   steps:
+   - checkpoint: check_pregunta1
+   - intent: mediano
+   - action: action_set_r1_mediano
+   - slot_was_set:
+     - duracion: "mediano"
+   - action: utter_feedback_respuesta1
+   - action: utter_pregunta2
+   - checkpoint: check_pregunta2
+
+ - story: respuesta1 largo
+   steps:
+   - checkpoint: check_pregunta1
+   - intent: largo
+   - action: action_set_r1_largo
+   - slot_was_set:
+     - duracion: "largo"
+   - action: utter_feedback_respuesta1
+   - action: utter_pregunta2
+   - checkpoint: check_pregunta2
+
+ - story: respuesta2 si
+   steps:
+   - checkpoint: check_pregunta2
+   - intent: afirmar
+   - action: action_set_r2_si
+   - slot_was_set:
+     - respuesta2: "Sí"
+   - action: utter_feedback_respuesta2
+   - action: utter_pregunta3
+   - checkpoint: check_pregunta3
+
+ - story: respuesta2 no
+   steps:
+   - checkpoint: check_pregunta2
+   - intent: negar
+   - action: action_set_r2_no
+   - slot_was_set:
+     - respuesta2: "No"
+   - action: utter_feedback_respuesta2
+   - action: utter_pregunta3
+   - checkpoint: check_pregunta3
+
+ - story: respuesta3 si
+   steps:
+   - checkpoint: check_pregunta3
+   - intent: afirmar
+   - action: action_set_r3_si
+   - slot_was_set:
+     - respuesta3: "Sí"
+   - action: utter_feedback_respuesta3
+   - action: utter_seguir_clasificando
+   - checkpoint: check_siguiente
+
+ - story: respuesta3 no
+   steps:
+   - checkpoint: check_pregunta3
+   - intent: negar
+   - action: action_set_r3_no
+   - slot_was_set:
+     - respuesta3: "No"
+   - action: utter_feedback_respuesta3
+   - action: utter_seguir_clasificando
+   - checkpoint: check_siguiente
+
+ - story: siguiente clasificacion
+   steps:
+   - checkpoint: check_siguiente
+   - intent: afirmar
+   - action: utter_siguiente_clasificacion
+   - action: action_get_sample
+   - action: utter_pregunta1
+   - checkpoint: check_pregunta1
+
+ - story: no siguiente clasificacion
+   steps:
+   - checkpoint: check_siguiente
+   - intent: negar
+   - action: utter_parar_clasificacion
+
+ - story: sobre el proyecto
+   steps:
+   - intent: preguntar_proyecto
+   - action: utter_sobre_proyecto
+
+ - story: que es un meteoro
+   steps:
+   - intent: preguntar_meteoro
+   - action: utter_definicion_meteoro
+
+ - story: que hay que hacer
+   steps:
+   - intent: preguntar_aclarar
+   - action: utter_que_hacer
+
+ - story: despedida
+   steps:
+   - intent: despedirse
+   - action: utter_adios
