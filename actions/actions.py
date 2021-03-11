@@ -8,6 +8,8 @@ from rasa_sdk.events import SlotSet
 from typing import Any, Text, Dict, List
 from rasa_sdk import Action, Tracker
 from rasa_sdk.executor import CollectingDispatcher
+from datetime import datetime
+import time
 import requests
 import json
 
@@ -27,15 +29,15 @@ class ActionGetSample(Action):
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
       
       # Test sample:
-      #id = "fuenlabrada_2020-05-02-15453015"
-      #audio = "http://138.100.100.143/fuenlabrada/opendata/sounds_test/mayo/fuenlabrada_2020-05-02-15453015.wav"
+      id = "fuenlabrada_2020-05-02-15453015"
+      audio = "http://138.100.100.143/fuenlabrada/opendata/sounds_test/mayo/fuenlabrada_2020-05-02-15453015.wav"
 
       # Get json from the API with the id and sound of a detection:
-      url = "http://138.100.100.143:3001/sonidos?policy=random"
-      r = requests.get(url, headers=headers)
-      decoded = json.loads(r.text)
-      id = decoded["_id"]
-      audio = decoded["Ruta"]
+      #url = "http://138.100.100.143:3001/sonidos?policy=random"
+      #r = requests.get(url, headers=headers)
+      #decoded = json.loads(r.text)
+      #id = decoded["_id"]
+      #audio = decoded["Ruta"]
 
       # Set value to slots:
       SlotSet(key = "id", value = id)
@@ -43,7 +45,7 @@ class ActionGetSample(Action):
 
       # Creates JSON message to send the sample files:
       new_sample =  {
-         "Sample": 
+         "sample": 
 			   { 
                "id": id ,
                "audio": audio,
@@ -62,22 +64,61 @@ class ActionSendClassification(Action):
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
       
-      # Get the value of the slots with the answers
-      duracion = tracker.get_slot("duracion")
-      corto_silencio = tracker.get_slot("corto_silencio")
-      suena_igual = tracker.get_slot("suena_igual")
+      url = 'http://138.100.100.143:3001/clasificaciones/'
+      query_dict = {}
+      eco = tracker.get_slot('id')
+      nombre = 'chatbot-infantil'
 
-      # POST API: this code must be replaced with the call to our API
-      new_classification =  {
-         "classification": 
-			   {
-               "id": 1 ,
-               "duracion": duracion,
-               "corto_silencio": corto_silencio,
-               "suena_igual": suena_igual,
+      # Get the value of the slots with the answers:
+      r1 = tracker.get_slot("respuesta1")
+      r2 = tracker.get_slot("respuesta2")
+      r3 = tracker.get_slot("respuesta3")
+
+      # Creates query:
+      query_dict['_id'] = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+      query_dict['idEco'] = eco
+      query_dict['Nombre'] = nombre
+      query_dict['Respuesta1'] = r1 
+      query_dict['Respuesta2'] = r2
+      query_dict['Respuesta3'] = r3
+
+      #r = requests.post(url, data=json.dumps(query_dict), headers=headers)
+
+      # Reset slots:
+      SlotSet(key = "id", value = None)
+      SlotSet(key = "respuesta1", value = None)
+      SlotSet(key = "respuesta2", value = None)
+      SlotSet(key = "respuesta3", value = None)
+
+      # Creates JSON message to increase counter:
+      new_clasification =  {
+         "clasification": 
+			   { 
+               "new": "true"
             }
 		}
-      return dispatcher.utter_message(json_message = new_classification) 
+      return dispatcher.utter_message(json_message = new_clasification)
+
+
+# Reproduce video in front:
+class ActionPlayVideo(Action):
+   def name(self):
+      return "action_play_video"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      # Creates JSON message to trigger reproduction:
+      video_trigger =  {
+         "video": 
+			   { 
+               "tutorial": "true"
+            }
+		}
+      return dispatcher.utter_message(json_message = video_trigger)
+
 
 ## Set values slots:
 class ActionSetCorto(Action):

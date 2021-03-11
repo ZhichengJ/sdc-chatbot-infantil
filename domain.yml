@@ -213,6 +213,7 @@ actions:
 - '...'
 - action_get_sample
 - action_send_classification
+- action_play_video
 - action_set_r1_corto
 - action_set_r1_mediano
 - action_set_r1_largo

@@ -9,6 +9,7 @@ stories:
    steps:
    - intent: tutorial
    - action: utter_tutorial
+   - action: action_play_video
 
  - story: clasificacion
    steps:
@@ -82,6 +83,7 @@ stories:
    - slot_was_set:
      - respuesta3: "Sí"
    - action: utter_feedback_respuesta3
+   - action: action_send_classification
    - action: utter_seguir_clasificando
    - checkpoint: check_siguiente
 
@@ -93,6 +95,7 @@ stories:
    - slot_was_set:
      - respuesta3: "No"
    - action: utter_feedback_respuesta3
+   - action: action_send_classification
    - action: utter_seguir_clasificando
    - checkpoint: check_siguiente
 
