@@ -2,21 +2,22 @@ version: '2.0'
 session_config:
   session_expiration_time: 480
   carry_over_slots_to_new_session: true
+
 intents:
-- saludar
-- despedirse
-- negar
-- afirmar
-- clasificar
-- tutorial
-- corto
-- mediano
-- largo
-- preguntar_meteoro
-- preguntar_proyecto
-- preguntar_aclarar
+    - saludar
+    - despedirse
+    - negar
+    - afirmar
+    - clasificar
+    - tutorial
+    - corto
+    - mediano
+    - largo
+    - preguntar_meteoro
+    - preguntar_proyecto
+    - preguntar_aclarar
 entities:
-- nombre
+    - nombre
 slots:
   requested_slot:
     type: any
@@ -35,6 +36,7 @@ slots:
   respuesta3:
     type: text
     influence_conversation: true
+
 responses:
   utter_adios:
   - text: |
@@ -57,6 +59,8 @@ responses:
       Vuelve siempre que quieras, ¡nos vemos en el espacio de Sonidos del Cielo!      
   - text: |
       Vuelve siempre que quieras, ¡te esperamos en Sonidos del Cielo!
+  
+  
   utter_hola:
   - text: |
       ¡Bienvenido! Me alegra verte, esto es Sonidos del Cielo, el proyecto de Ciencia Ciudadana para la clasificación de meteoros a partir de sus sonidos.
@@ -74,6 +78,8 @@ responses:
       ¡Parece que tenemos visita! ¡Hola! Esto es Sonidos del Cielo, el proyecto de Ciencia Ciudadana para la clasificación de meteoros a partir de sus sonidos. 
   - text: |
       ¿Qué tal? Bienvenido a Sonidos del Cielo, el proyecto de Ciencia Ciudadana para la clasificación de meteoros a través de sus sonidos. 
+  
+  
   utter_menu:
   - text: |
       ¿Quieres que te explique el juego o prefieres empezar a jugar?
@@ -81,9 +87,12 @@ responses:
       ¿Necesitas que te explique en qué consiste el juego o quieres empezar a jugar?
   - text: |
       ¿Qué te gustaría hacer, escuchar la explicación del juego o empezar a jugar?
+  
+  
   utter_tutorial:
   - text: |
       ¡Vamos con la explicación! Cuando termine el vídeo puede decir ¡A jugar! para empezar a clasificar meteoros.
+  
   utter_clasificar:
   - text: |
       ¡Bien!¡Preparados para jugar! 
@@ -107,11 +116,15 @@ responses:
       Vamos con la clasificación de meteoros.
   - text: |
       Comencemos con la clasificación de meteoros.
+  
+  
   utter_clasificar_instrucciones:
   - text: |
       Espero que estés preparado para clasificar meteoros. A continuación oirás un sonido te haré unas preguntas. Puedes reproducir el sonido el meteoro tantas veces como necesites.
   - text: |
       A continuación escucharás un sonido y te haré unas preguntas. Pon atención, y recuerda que puedes reproducir el sonido tantas veces como necesites.
+  
+  
   utter_pregunta1:
   - text: |
       ¿Cómo es el sonido? ¿Es corto, mediano o largo?
@@ -119,14 +132,20 @@ responses:
       ¿El sonido que has escuchado es corto, mediano, o largo?
   - text: |
       ¿El sonido es corto, mediano, o largo?
+  
+  
   utter_feedback_respuesta1:
   - text: |
       Has contestado {duracion}
   - text: |
       Tu respuesta ha sido sonido {duracion}
+  
+  
   utter_pregunta2:
   - text: |
       ¿Se escucha al principio un sonido corto y luego un silencio? 
+  
+  
   utter_feedback_respuesta2:
   - text: |
       Has respondido {respuesta2}. Vamos con la última pregunta...
@@ -134,11 +153,15 @@ responses:
       Has respondido {respuesta2}. Solo nos queda una pregunta.
   - text: |
       Has respondido {respuesta2}. Seguimos con la última pregunta.
+  
+  
   utter_pregunta3:
   - text: |
       ¿Suena igual al principio y al final? 
   - text: |
       ¿El sonido es igual al principio y al final?
+  
+  
   utter_feedback_respuesta3:
   - text: |
       Has respondido {respuesta3}. ¡Has completado esta clasificación!
@@ -158,6 +181,8 @@ responses:
       Has contestado {respuesta3}. ¡Hemos completado una clasificación!
   - text: |
       Has contestado {respuesta3}. ¡Has clasificado un sonido!
+  
+  
   utter_seguir_clasificando:
   - text: |
       ¿Quieres clasificar el siguiente sonido? 
@@ -169,6 +194,8 @@ responses:
       ¿Quieres seguir clasificando? 
   - text: |
       ¿Quieres que pasemos al siguiente sonido? 
+  
+  
   utter_siguiente_clasificacion:
   - text: |
       Vamos con el siguiente sonido
@@ -180,6 +207,8 @@ responses:
       Presta atención al siguiente sonido 
   - text: |
       Escucha el siguiente sonido
+  
+  
   utter_parar_clasificacion:
   - text: |
       ¡Gracias por ayudarnos a clasificar meteoros!, si quieres volver a jugar o conocer información sobre el proyecto no dudes en pedirmelo
@@ -189,17 +218,25 @@ responses:
       Espero que te hayas divertido, si quieres volver a jugar o conocer información sobre el proyecto no dudes en pedirmelo
   - text: |
       Gracias por tu tiempo, si quieres volver a jugar o conocer información sobre el proyecto no dudes en pedirmelo
+  
+  
   utter_definicion_meteoro:
   - text: |
       Se llama meteoroide a los cuerpos menores o rocas que viaja por el espacio, cuando entran en la atmósfera se les llama meteoros y cuando alcanzan la superficie de la Tierra se les llama meteoritos. Popularmente los meteoros son conocidos como estrellas fugaces y están formados por una roca y una estela   
+  
+  
   utter_sobre_proyecto:
   - text: |
       Sonidos del Cielo es un proyecto de ciencia ciudadana para que cualquier persona pueda ayudar a los expertos a clasificar meteoros. ¡Puedes encontrar más información sobre el proyecto en la página web del proyecto!
+  
+  
   utter_que_hacer:
   - text: |
       Si dices "a jugar" podremos empezar con la clasificación. Se reproducirá un sonido y te haré tres preguntas. ¡Cuantas más clasificaciones hagas más puntos obtendrás!
   - text: |
       Cuando digas "a jugar" empezará el juego. Se reproducirá un sonido y te haré tres preguntas. ¡Cuantas más clasificaciones completes más puntos obtendrás!
+  
+  
   utter_reformular:
   - text: |
       Perdona, no te he entendido... ¿podrías repetirlo de otra manera para que pueda entenderte? 
@@ -209,8 +246,8 @@ responses:
       Vaya, no he entendido eso, ¿podrías repetirlo de otra manera para que pueda entenderte?
   - text: |
       No te he entendido, por favor ¿podrías repetirlo de otra forma?
+
 actions:
-- '...'
 - action_get_sample
 - action_send_classification
 - action_play_video

@@ -10,6 +10,10 @@ services:
       - .:/app
     command:
       - run
+      - --ssl-certificate
+      - ssl.pem
+      - --ssl-keyfile
+      - ssl.key
       - -m
       - models
       - --cors

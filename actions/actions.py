@@ -29,19 +29,15 @@ class ActionGetSample(Action):
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
       
       # Test sample:
-      id = "fuenlabrada_2020-05-02-15453015"
-      audio = "http://138.100.100.143/fuenlabrada/opendata/sounds_test/mayo/fuenlabrada_2020-05-02-15453015.wav"
+      # id = "fuenlabrada_2020-05-02-15453015"
+      # audio = "http://138.100.100.143/fuenlabrada/opendata/sounds_test/mayo/fuenlabrada_2020-05-02-15453015.wav"
 
       # Get json from the API with the id and sound of a detection:
-      #url = "http://138.100.100.143:3001/sonidos?policy=random"
-      #r = requests.get(url, headers=headers)
-      #decoded = json.loads(r.text)
-      #id = decoded["_id"]
-      #audio = decoded["Ruta"]
-
-      # Set value to slots:
-      SlotSet(key = "id", value = id)
-      SlotSet(key = "audio", value = audio)
+      url = "http://138.100.100.143:3001/sonidos?policy=random"
+      r = requests.get(url, headers=headers)
+      decoded = json.loads(r.text)
+      id = decoded["_id"]
+      audio = decoded["Ruta"]
 
       # Creates JSON message to send the sample files:
       new_sample =  {
@@ -51,7 +47,8 @@ class ActionGetSample(Action):
                "audio": audio,
             }
 		}
-      return dispatcher.utter_message(json_message = new_sample) #dispatcher.utter_message(text = "Hey there")#
+      dispatcher.utter_message(json_message = new_sample) #dispatcher.utter_message(text = "Hey there")#
+      return[SlotSet("id",id), SlotSet("audio", audio)]
 
 
 # Sends the answers of the last classification:
@@ -65,7 +62,7 @@ class ActionSendClassification(Action):
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
       
       url = 'http://138.100.100.143:3001/clasificaciones/'
-      query_dict = {}
+      query_Dict = {}
       eco = tracker.get_slot('id')
       nombre = 'chatbot-infantil'
 
@@ -75,20 +72,17 @@ class ActionSendClassification(Action):
       r3 = tracker.get_slot("respuesta3")
 
       # Creates query:
-      query_dict['_id'] = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
-      query_dict['idEco'] = eco
-      query_dict['Nombre'] = nombre
-      query_dict['Respuesta1'] = r1 
-      query_dict['Respuesta2'] = r2
-      query_dict['Respuesta3'] = r3
+      query_Dict['_id'] = eco
+      query_Dict['Timestamp'] = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+      query_Dict['Tipo'] = 'Sonido'
+      query_Dict['Respuesta1'] = r1 
+      query_Dict['Respuesta2'] = r2
+      query_Dict['Respuesta3'] = r3
 
-      #r = requests.post(url, data=json.dumps(query_dict), headers=headers)
+      r = requests.post(url, data=json.dumps(query_Dict), headers=headers)
 
       # Reset slots:
-      SlotSet(key = "id", value = None)
-      SlotSet(key = "respuesta1", value = None)
-      SlotSet(key = "respuesta2", value = None)
-      SlotSet(key = "respuesta3", value = None)
+
 
       # Creates JSON message to increase counter:
       new_clasification =  {
@@ -97,8 +91,9 @@ class ActionSendClassification(Action):
                "new": "true"
             }
 		}
-      return dispatcher.utter_message(json_message = new_clasification)
+      dispatcher.utter_message(json_message = new_clasification)
 
+      return [SlotSet("respuesta1",None),SlotSet("respuesta2",None),SlotSet("respuesta3",None),SlotSet("id",None)]
 
 # Reproduce video in front:
 class ActionPlayVideo(Action):
