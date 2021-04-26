@@ -1,5 +1,150 @@
+version: '2.0'
 rules:
-- rule: Pedir que repita la ultima frase
-  steps:
-  - intent: nlu_fallback
-  - action: utter_reformular
+  - rule: Pedir que repita la ultima frase
+    steps:
+    - intent: nlu_fallback
+    - action: utter_default
+
+  - rule: saludo
+    steps:
+    - intent: saludar
+    - action: utter_hola
+    - action: utter_menu
+    - action: action_menu_true
+    - action: action_listen
+
+  - rule: clasificacion
+    condition:
+    - slot_was_set:
+      - menu: True
+    steps:
+    - intent: clasificar
+    - action: utter_clasificar
+    - action: utter_clasificar_instrucciones
+    - action: action_get_sample
+    - action: utter_pregunta1
+    - action: action_p1_true
+    - action: action_listen
+
+  - rule: p1
+    condition:
+    - slot_was_set:
+      - p1: True
+    steps:
+    - or:
+      - intent: corto
+      - intent: mediano
+      - intent: largo
+    - action: action_menu_false
+    - action: action_seguir_false
+    - action: action_p3_false
+    - action: action_set_duracion
+    - action: utter_feedback_respuesta1
+    - action: utter_pregunta2
+    - action: action_p2_true
+    - action: action_listen
+
+  - rule: p2
+    condition:
+    - slot_was_set:
+      - p2: True
+    steps:
+    - or:
+      - intent: afirmar
+      - intent: negar
+    - action: action_set_r2
+    - action: action_p1_false
+    - action: utter_feedback_respuesta2
+    - action: utter_pregunta3
+    - action: action_p3_true
+    - action: action_listen
+
+  - rule: p3
+    condition:
+    - slot_was_set:
+      - p3: True
+      - p1: False
+    steps:
+    - or:
+      - intent: afirmar
+      - intent: negar
+    - action: action_set_r3
+    - action: action_p2_false
+    - action: utter_feedback_respuesta3
+    - action: action_send_classification
+    - action: utter_seguir_clasificando
+    - action: action_seguir_true
+    - action: action_listen
+
+  - rule: siguiente clasificacion
+    condition:
+    - slot_was_set:
+      - seguir: True
+      - p2: False
+    steps:
+    - intent: afirmar
+    - action: utter_siguiente_clasificacion
+    - action: action_get_sample
+    - action: utter_pregunta1
+    - action: action_p1_true
+    - action: action_listen
+
+
+  - rule: no siguiente clasificacion
+    condition:
+    - slot_was_set:
+      - seguir: True
+      - p2: False
+    steps:
+    - intent: negar
+    - action: utter_parar_clasificacion
+
+  - rule: explicacion
+    condition:
+    - slot_was_set:
+      - menu: True
+    steps:
+    - intent: tutorial
+    - action: utter_tutorial
+    - action: action_play_video
+    - action: utter_menu
+    - action: action_listen
+
+  - rule: sobre el proyecto
+    condition:
+    - slot_was_set:
+      - menu: True
+    steps:
+    - intent: preguntar_proyecto
+    - action: utter_sobre_proyecto
+    - action: utter_menu
+    - action: action_listen
+
+  - rule: que es un meteoro
+    condition:
+    - slot_was_set:
+      - menu: True
+    steps:
+    - intent: preguntar_meteoro
+    - action: utter_definicion_meteoro
+    - action: utter_menu
+    - action: action_listen
+
+  - rule: que hay que hacer
+    condition:
+    - slot_was_set:
+      - menu: True
+    steps:
+    - intent: preguntar_aclarar
+    - action: utter_que_hacer
+    - action: utter_menu
+    - action: action_listen
+
+  - rule: despedida
+    condition:
+    - slot_was_set:
+      - menu: True
+    steps:
+    - intent: despedirse
+    - action: utter_adios
+    - action: action_listen

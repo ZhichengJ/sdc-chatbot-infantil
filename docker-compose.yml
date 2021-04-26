@@ -10,10 +10,10 @@ services:
       - .:/app
     command:
       - run
-      - --ssl-certificate
-      - ssl.pem
-      - --ssl-keyfile
-      - ssl.key
+      #- --ssl-certificate
+      #- ssl.pem
+      #- --ssl-keyfile
+      #- ssl.key
       - -m
       - models
       - --cors
@@ -21,7 +21,7 @@ services:
     depends_on:
       - action-server
   action-server:
-    container_name: sdc-ction
+    container_name: sdc-action
     image: rasa/rasa-sdk:latest
     volumes:
       - ./actions:/app/actions

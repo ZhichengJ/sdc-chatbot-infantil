@@ -1,3 +1,4 @@
+version: "2.0"
 nlu:
 - intent: saludar
   examples: |
@@ -13,7 +14,6 @@ nlu:
     - buenas tardes
     - buenas noches
     - saludos
-
 - intent: despedirse
   examples: |
     - adiós
@@ -24,7 +24,6 @@ nlu:
     - hasta pronto
     - me voy
     - nos vemos
-
 - intent: negar
   examples: |
     - en absoluto
@@ -35,7 +34,6 @@ nlu:
     - no
     - no quiero
     - nop
-
 - intent: afirmar
   examples: |
     - afirmativo
@@ -53,7 +51,6 @@ nlu:
     - yes
     - vale
     - siguiente
-
 - intent: clasificar
   examples: |
     - quiero jugar
@@ -62,7 +59,6 @@ nlu:
     - quiero clasificar
     - clasificar
     - me gustaria clasificar
-
 - intent: tutorial
   examples: |
     - explica
@@ -73,14 +69,13 @@ nlu:
     - quiero una explicacion
     - de que va el juego
     - como se juega
-
+    - tutorial
 - intent: corto
   examples: |
     - el sonido es corto
     - es corto
     - es un sonido corto
     - corto
-
 - intent: mediano
   examples: |
     - el sonido es mediano
@@ -92,14 +87,12 @@ nlu:
     - medio
     - normal
     - regular
-
 - intent: largo
   examples: |
     - el sonido es largo
     - es largo
     - es un sonido largo
     - largo
-
 - intent: preguntar_proyecto
   examples: |
     - ¿qué es un sonidos del cielo?
@@ -114,7 +107,6 @@ nlu:
     - información del proyecto
     - información sobre el proyecto
     - informacion de sonidos del cielo
-
 - intent: preguntar_aclarar
   examples: |
     - ¿qué hay que hacer?
@@ -123,12 +115,13 @@ nlu:
     - no sé que hay que hacer
     - no me he enterado
     - qué tengo que hacer
-    - que ahoga ahora
-
+    - que hago ahora
 - intent: preguntar_meteoro
   examples: |
     - ¿qué es un meteoro?
     - ¿qué es un meteoroide?
     - no sé qué es un meteoro
     - no sé qué es un meteoroide
-
+- intent: no_seguir_clasificando
+  examples: |
+    - quiero terminar

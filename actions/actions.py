@@ -116,72 +116,180 @@ class ActionPlayVideo(Action):
 
 
 ## Set values slots:
-class ActionSetCorto(Action):
+class ActionSetDuracion(Action):
    def name(self):
-      return "action_set_r1_corto"
+      return "action_set_duracion"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("duracion", "corto"), SlotSet("respuesta1", "Menos de 1 segundo")]
 
-class ActionSetMediano(Action):
+      respuesta = tracker.latest_message['intent'].get('name')
+      if (respuesta == 'corto'):
+         return [SlotSet("duracion", "corto"), SlotSet("respuesta1", "Menos de 1 segundo")]
+      elif (respuesta == 'mediano'):
+         return [SlotSet("duracion", "mediano"), SlotSet("respuesta1", "Entre 1 y 5 segundos")]
+      elif (respuesta == 'largo'):
+         return [SlotSet("duracion", "largo"), SlotSet("respuesta1", "Mas de 9 segundos")]
+
+class ActionSetR2(Action):
    def name(self):
-      return "action_set_r1_mediano"
+      return "action_set_r2"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("duracion", "mediano"), SlotSet("respuesta1", "Entre 1 y 5 segundos")]
 
-class ActionSetLargo(Action):
+      respuesta = tracker.latest_message['intent'].get('name')
+      if (respuesta == 'afirmar'):
+         return [SlotSet("respuesta2", "Sí")]
+      elif (respuesta == 'negar'):
+         return [SlotSet("respuesta2", "No")]
+
+class ActionSetR3(Action):
    def name(self):
-      return "action_set_r1_largo"
+      return "action_set_r3"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("duracion", "largo"), SlotSet("respuesta1", "Mas de 9 segundos")]
+      
+      respuesta = tracker.latest_message['intent'].get('name')
+      if (respuesta == 'afirmar'):
+         return [SlotSet("respuesta3", "Sí")]
+      elif (respuesta == 'negar'):
+         return [SlotSet("respuesta3", "No")]
 
-class ActionSetCortoLargoSi(Action):
+class ActionP1True(Action):
    def name(self):
-      return "action_set_r2_si"
+      return "action_p1_true"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("respuesta2", "Sí")]
+      
+      return [SlotSet("p1",True)]
 
-class ActionSetCortoLargoNo(Action):
+class ActionP2True(Action):
    def name(self):
-      return "action_set_r2_no"
+      return "action_p2_true"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("respuesta2", "No")]
+      
+      return [SlotSet("p2",True)]
 
-class ActionSetIgualSi(Action):
+class ActionP3True(Action):
    def name(self):
-      return "action_set_r3_si"
+      return "action_p3_true"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("respuesta3", "Sí")]
+      
+      return [SlotSet("p3",True)]
 
-class ActionSetIgualNo(Action):
+class ActionP1False(Action):
    def name(self):
-      return "action_set_r3_no"
+      return "action_p1_false"
 
    def run(self,
            dispatcher: CollectingDispatcher,
            tracker: Tracker,
            domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
-      return [SlotSet("respuesta3", "No")]
+      
+      return [SlotSet("p1",False)]
+
+class ActionP2False(Action):
+   def name(self):
+      return "action_p2_false"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      return [SlotSet("p2",False)]
+
+class ActionP3False(Action):
+   def name(self):
+      return "action_p3_false"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      return [SlotSet("p3",False)]
+
+
+class ActionMenuFalse(Action):
+   def name(self):
+      return "action_menu_false"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      return [SlotSet("menu",False)]
+
+class ActionMenuTrue(Action):
+   def name(self):
+      return "action_menu_true"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      return [SlotSet("menu",True)]
+
+class ActionSeguirFalse(Action):
+   def name(self):
+      return "action_seguir_false"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      return [SlotSet("seguir",False)]
+
+class ActionSeguirTrue(Action):
+   def name(self):
+      return "action_seguir_true"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      return [SlotSet("seguir",True)]
+
+
+class ActionDefaultFallback(Action):
+    """Executes the fallback action and goes back to the previous state
+    of the dialogue"""
+
+    def name(self) -> Text:
+        return "action_default_fallback"
+
+    async def run(
+        self,
+        dispatcher: CollectingDispatcher,
+        tracker: Tracker,
+        domain: Dict[Text, Any],
+    ) -> List[Dict[Text, Any]]:
+        dispatcher.utter_message("Creo que no te he entendido, ¿podrías repetirlo de otra forma?")
+
+        # Revert user message which led to fallback.
+        return [UserUtteranceReverted()]
+      
