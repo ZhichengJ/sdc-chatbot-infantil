@@ -90,9 +90,6 @@ rules:
     - action: action_listen
 
   - rule: repetir sonido
-    condition:
-    - slot_was_set:
-      - menu: False
     steps:
     - intent: repetir
     - action: action_repetir_sonido
