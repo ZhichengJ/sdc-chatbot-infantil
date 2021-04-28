@@ -53,6 +53,11 @@ nlu:
     - siguiente
     - otro
     - Quiero otro por favor
+- intent: repetir
+  examples: |
+    - repetir sonido
+    - repite por favor
+    - repetir
 - intent: clasificar
   examples: |
     - quiero jugar

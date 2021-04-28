@@ -89,6 +89,14 @@ rules:
     - action: action_p1_true
     - action: action_listen
 
+  - rule: repetir sonido
+    condition:
+    - slot_was_set:
+      - menu: False
+    steps:
+    - intent: repetir
+    - action: action_repetir_sonido
+    - action: action_listen
 
   - rule: no siguiente clasificacion
     condition:

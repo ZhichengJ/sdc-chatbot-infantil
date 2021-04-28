@@ -50,6 +50,28 @@ class ActionGetSample(Action):
       dispatcher.utter_message(json_message = new_sample) #dispatcher.utter_message(text = "Hey there")#
       return[SlotSet("id",id), SlotSet("audio", audio)]
 
+class ActionRepetirSonido(Action):
+   def name(self):
+      return "action_repetir_sonido"
+
+   def run(self,
+           dispatcher: CollectingDispatcher,
+           tracker: Tracker,
+           domain: Dict[Text, Any]) -> List[Dict[Text, Any]]:
+      
+      id = tracker.get_slot("id")
+      audio = tracker.get_slot("audio")
+
+      # Creates JSON message to send the sample files:
+      new_sample =  {
+         "sample": 
+			   { 
+               "id": id ,
+               "audio": audio,
+            }
+		}
+      dispatcher.utter_message(json_message = new_sample)
+      return[]
 
 # Sends the answers of the last classification:
 class ActionSendClassification(Action):

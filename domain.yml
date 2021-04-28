@@ -132,9 +132,9 @@ responses:
       Comencemos con la clasificación de meteoros.
   utter_clasificar_instrucciones:
   - text: |
-      Espero que estés preparado para clasificar meteoros. A continuación oirás un sonido y te haré unas preguntas. Puedes reproducir el sonido del meteoro tantas veces como necesites, haciendo uso del segundo botón que hay a la derecha de la aplicación.
+      Espero que estés preparado para clasificar meteoros. A continuación oirás un sonido y te haré unas preguntas. Puedes reproducir el sonido del meteoro tantas veces como necesites diciendo repetir sonido.
   - text: |
-      A continuación escucharás un sonido y te haré unas preguntas. Pon atención, y recuerda que puedes reproducir el sonido tantas veces como necesites, utilizando el segundo botón que hay a la derecha.
+      A continuación escucharás un sonido y te haré unas preguntas. Pon atención, y recuerda que puedes reproducir el sonido tantas veces como necesites diciendo repetir sonido.
   utter_pregunta1:
   - text: |
       ¿Cómo es el sonido? ¿Es corto, mediano o largo?
@@ -251,3 +251,4 @@ actions:
 - action_menu_false
 - action_seguir_false
 - action_seguir_true
+- action_repetir_sonido
