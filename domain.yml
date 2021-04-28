@@ -16,6 +16,7 @@ intents:
 - preguntar_proyecto
 - preguntar_aclarar
 - no_seguir_clasificando
+- repetir
 entities:
 - nombre
 slots:
