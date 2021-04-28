@@ -132,9 +132,9 @@ responses:
       Comencemos con la clasificación de meteoros.
   utter_clasificar_instrucciones:
   - text: |
-      Espero que estés preparado para clasificar meteoros. A continuación oirás un sonido y te haré unas preguntas. Puedes reproducir el sonido el meteoro tantas veces como necesites.
+      Espero que estés preparado para clasificar meteoros. A continuación oirás un sonido y te haré unas preguntas. Puedes reproducir el sonido del meteoro tantas veces como necesites, haciendo uso del segundo botón que hay a la derecha de la aplicación.
   - text: |
-      A continuación escucharás un sonido y te haré unas preguntas. Pon atención, y recuerda que puedes reproducir el sonido tantas veces como necesites.
+      A continuación escucharás un sonido y te haré unas preguntas. Pon atención, y recuerda que puedes reproducir el sonido tantas veces como necesites, utilizando el segundo botón que hay a la derecha.
   utter_pregunta1:
   - text: |
       ¿Cómo es el sonido? ¿Es corto, mediano o largo?
@@ -149,14 +149,14 @@ responses:
       Tu respuesta ha sido sonido {duracion}
   utter_pregunta2:
   - text: |
-      ¿Se escucha al principio un sonido corto y luego un silencio? 
+      Atento a la segunda pregunta y responde con sí o no. ¿Se escucha al principio un sonido corto y luego un silencio? 
   utter_feedback_respuesta2:
   - text: |
-      Has respondido {respuesta2}. Vamos con la última pregunta...
+      Has respondido {respuesta2}. Vamos con la última pregunta... Responda con sí o no a la siguiente pregunta.
   - text: |
-      Has respondido {respuesta2}. Solo nos queda una pregunta.
+      Has respondido {respuesta2}. Solo nos queda una pregunta. Responda con sí o no a la siguiente pregunta.
   - text: |
-      Has respondido {respuesta2}. Seguimos con la última pregunta.
+      Has respondido {respuesta2}. Seguimos con la última pregunta. Responda con sí o no a la siguiente pregunta.
   utter_pregunta3:
   - text: |
       ¿Suena igual al principio y al final? 

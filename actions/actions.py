@@ -72,8 +72,8 @@ class ActionSendClassification(Action):
       r3 = tracker.get_slot("respuesta3")
 
       # Creates query:
-      query_Dict['_id'] = eco
-      query_Dict['Timestamp'] = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+      query_Dict['_id'] = datetime.now().strftime("%Y-%m-%d_%H:%M:%S")
+      query_Dict['idEco'] = eco
       query_Dict['Tipo'] = 'Sonido'
       query_Dict['Respuesta1'] = r1 
       query_Dict['Respuesta2'] = r2

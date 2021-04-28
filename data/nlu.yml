@@ -51,6 +51,8 @@ nlu:
     - yes
     - vale
     - siguiente
+    - otro
+    - Quiero otro por favor
 - intent: clasificar
   examples: |
     - quiero jugar
