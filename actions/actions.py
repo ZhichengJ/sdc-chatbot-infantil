@@ -61,16 +61,16 @@ class ActionRepetirSonido(Action):
       
       id = tracker.get_slot("id")
       audio = tracker.get_slot("audio")
-
-      # Creates JSON message to send the sample files:
-      new_sample =  {
-         "sample": 
-			   { 
-               "id": id ,
-               "audio": audio,
-            }
-		}
-      dispatcher.utter_message(json_message = new_sample)
+      if (id != None and audio != None):
+         # Creates JSON message to send the sample files:
+         new_sample =  {
+            "sample": 
+               { 
+                  "id": id ,
+                  "audio": audio,
+               }
+         }
+         dispatcher.utter_message(json_message = new_sample)
       return[]
 
 # Sends the answers of the last classification:
