@@ -58,6 +58,9 @@ nlu:
     - repetir sonido
     - repite por favor
     - repetir
+    - escuchar de nuevo
+    - escuchar sonido
+    - volver a escuchar
 - intent: clasificar
   examples: |
     - quiero jugar
