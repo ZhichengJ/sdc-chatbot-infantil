@@ -1,0 +1,9 @@
+.DS_Store
+
+# ssl certificates
+*.cer
+*.key
+
+#config files
+endpoints.yml
+docker-compose.yml

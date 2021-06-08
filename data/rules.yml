@@ -22,6 +22,7 @@ rules:
     - action: utter_clasificar
     - action: utter_clasificar_instrucciones
     - action: action_get_sample
+    - action: utter_descripcion
     - action: utter_pregunta1
     - action: action_p1_true
     - action: action_listen
@@ -85,6 +86,7 @@ rules:
     - intent: afirmar
     - action: utter_siguiente_clasificacion
     - action: action_get_sample
+    - action: utter_descripcion
     - action: utter_pregunta1
     - action: action_p1_true
     - action: action_listen

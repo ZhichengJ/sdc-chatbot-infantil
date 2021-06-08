@@ -18,6 +18,10 @@ import json
 """
 headers = {'Content-type': 'application/json', 'Accept': 'text/plain', 'Access-Control-Allow-Origin':'*'}
 
+dia = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"]
+mes = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+
+
 # Gets audio en images for a new classification:
 class ActionGetSample(Action):
    def name(self):
@@ -39,6 +43,18 @@ class ActionGetSample(Action):
       id = decoded["_id"]
       audio = decoded["Ruta"]
 
+      # Extracting echo info
+      index = decoded['_id'].find('_')
+      estacion = decoded['_id'][:index]
+      date = decoded['_id'][index+1:-4]
+      dateTimeObj = datetime.strptime(date, '%Y-%m-%d-%H%M')
+      hour = dateTimeObj.strftime("%H:%M")
+      day = dateTimeObj.day
+      weekday = dia[dateTimeObj.weekday()]
+      month = mes[dateTimeObj.month]
+      year = dateTimeObj.year
+      date = weekday + ' ' + str(day) + " de " + month + " del " + str(year) + " a las " + str(hour)
+
       # Creates JSON message to send the sample files:
       new_sample =  {
          "sample": 
@@ -48,7 +64,7 @@ class ActionGetSample(Action):
             }
 		}
       dispatcher.utter_message(json_message = new_sample) #dispatcher.utter_message(text = "Hey there")#
-      return[SlotSet("id",id), SlotSet("audio", audio)]
+      return[SlotSet("id",id), SlotSet("audio", audio),SlotSet("estacion", estacion.capitalize()), SlotSet("fecha",date)]
 
 class ActionRepetirSonido(Action):
    def name(self):
